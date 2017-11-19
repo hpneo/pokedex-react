@@ -1,4 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import {
+	increment,
+	changeTime,
+	selectCount,
+	selectTime,
+} from '../redux/ducks/increment';
 
 class Profile extends Component {
   state = {
@@ -15,16 +23,18 @@ class Profile extends Component {
 	}
 
 	updateTime = () => {
-		this.setState({ time: Date.now() });
+		this.props.dispatch(changeTime());
+		// this.setState({ time: Date.now() });
 	};
 
 	increment = () => {
-		this.setState({ count: this.state.count+1 });
-  };
+		this.props.dispatch(increment());
+		// this.setState({ count: this.state.count+1 });
+	};
 
   render() {
     const { match: { params: { user } } } = this.props;
-    const { time, count } = this.state;
+    const { time, count } = this.props;
 
     return (
       <div>
@@ -43,4 +53,11 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+const mapStateToProps = state => (
+	{
+		time: selectTime(state),
+		count: selectCount(state),
+	}
+);
+
+export default connect(mapStateToProps)(Profile);
