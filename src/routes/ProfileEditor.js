@@ -1,46 +1,23 @@
 import React, { Component } from 'react';
+import { reduxForm, Field } from 'redux-form';
 
 class ProfileEditor extends Component {
-  state = {
-    count: 10,
-    time: Date.now(),
-  };
-
-  componentDidMount() {
-		this.timer = setInterval(this.updateTime, 1000);
-	}
-
-	componentWillUnmount() {
-		clearInterval(this.timer);
-	}
-
-	updateTime = () => {
-		this.setState({ time: Date.now() });
-	};
-
-	increment = () => {
-		this.setState({ count: this.state.count+1 });
-  };
-
-  render() {
+  render(props) {
     const { match: { params: { user } } } = this.props;
-    const { time, count } = this.state;
+    const { handleSubmit } = this.props;
 
     return (
       <div>
-        <h1>Profile: {user}</h1>
-        <p>This is the user profile for a user named { user }.</p>
-
-        <div>Current time: {new Date(time).toLocaleString()}</div>
-
-        <p>
-          <button onClick={this.increment}>Click Me</button>
-          {' '}
-          Clicked {count} times.
-        </p>
+        <form onSubmit={handleSubmit}>
+          <Field name='name' component='input' type='text' />
+          <button type='submit'>Enviar</button>
+        </form>
       </div>
     );
   }
 }
 
-export default ProfileEditor;
+export default reduxForm({
+  form: 'profile-editor',
+  onSubmit: data => console.log(data),
+})(ProfileEditor);
