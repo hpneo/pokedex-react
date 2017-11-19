@@ -4,12 +4,10 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Header from './components/Header';
 import Home from './routes/Home';
-import Profile from './routes/Profile';
-import ProfileEditor from './routes/ProfileEditor';
+import PokemonProfile from './routes/PokemonProfile';
 
 import store from './redux/store';
 
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -17,19 +15,12 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <div className="App">
+          <div className="app">
             <Header />
-            <div className='app-body'>
-              <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <h1 className="App-title">Welcome to React</h1>
-              </header>
-              <Switch>
-                <Route exact path="/profile/:user" component={Profile} />
-                <Route exact path="/profile/:user/edit" component={ProfileEditor} />
-                <Route path="/" component={Home} />
-              </Switch>
-            </div>
+            <Switch>
+              <Route exact path="/pokemons/:name" component={PokemonProfile} />
+              <Route path="/" component={Home} />
+            </Switch>
           </div>
         </Router>
       </Provider>

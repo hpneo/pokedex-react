@@ -1,11 +1,26 @@
-import { createStore, combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { createEpicMiddleware, combineEpics } from 'redux-observable';
+// import { reducer as formReducer } from 'redux-form';
 
-import incrementReducer from './ducks/increment';
+import pokemonsReducer, { epic as pokemonsEpic } from './ducks/pokemons';
+import pokemonReducer, { epic as pokemonEpic } from './ducks/pokemon';
 
 const rootReducer = combineReducers({
-  form: formReducer,
-  increment: incrementReducer,
+  // form: formReducer,
+  pokemons: pokemonsReducer,
+  pokemon: pokemonReducer,
 });
 
-export default createStore(rootReducer);
+const rootEpic = combineEpics(
+  pokemonsEpic,
+  pokemonEpic
+);
+
+export default createStore(
+  rootReducer,
+  compose(
+    applyMiddleware(
+      createEpicMiddleware(rootEpic)
+    )
+  )
+);

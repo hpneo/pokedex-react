@@ -1,34 +1,107 @@
-.App {
+.app {
+  background: #fafafa;
+  min-height: 100vh;
+  font-family: 'Lato';
+  font-weight: 400;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 2rem;
+  padding: 1rem;
+}
+
+.navbar h1 {
+  font-weight: 700;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: solid 1px #bdc3c7;
+}
+
+.list-item > * {
+  padding: 0 1rem;
+}
+
+.list-item > :first-child {
+  padding-left: 0;
+}
+
+.list-item > :last-child {
+  padding-right: 0;
+}
+
+.pokemon-profile {
+  padding: 0 2rem;
+}
+
+.pokemon-profile-summary {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: solid 1px #bdc3c7;
+}
+
+.pokemon-profile-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pokemon-profile-type {
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.pokemon-profile-summary > * {
+  padding: 1rem;
+}
+
+.pokemon-profile-stats {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pokemon-profile-stats > * {
+  padding: 2rem;
+  border-right: solid 1px #bdc3c7;
+}
+
+.pokemon-profile-stats > :last-child {
+  border-right: none;
+}
+
+.stat-value, .stat-label {
+  display: block;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.stat-value {
+  font-weight: 900;
+  font-size: 0.9rem;
+  color: #2c3e50;
+  text-transform: uppercase;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.app-body {
-	padding: 56px 0;
-	min-height: 100%;
-	width: 100%;
+.stat-label {
+  font-size: 0.75rem;
+  color: #7f8c8d;
 }
